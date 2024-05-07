@@ -14,7 +14,7 @@ const calculateWithdrawal = (
 
   const requiredSavings = annualExpenses / withdrawalRate;
 
-  while (currentNetWorth < requiredSavings) {
+  while (currentNetWorth < requiredSavings && yearsToFI < 40) {
     const annualSavings = annualIncome - annualExpenses;
     currentNetWorth += annualSavings + currentNetWorth * realRateOfReturn;
     
@@ -36,6 +36,9 @@ const calculateWithdrawal = (
     ageAtFI: age,
     requiredSavings,
     yearlyData,
+    canFIRE: currentNetWorth >= requiredSavings,
+    chartYear,
+    withdrawalRate,
   };
 };
 
@@ -64,5 +67,5 @@ function calculateFIREResult(
 }
 
 module.exports = {
-  calculateFIREResult,
+  calculateFIREResult
 };
